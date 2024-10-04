@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+		<title>Electro - HTML Ecommerce Template</title>
+
+		<!-- Google font -->
+
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+		<!-- Bootstrap -->
+		<link type="text/css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+
+		<!-- Slick -->
+		<link type="text/css" th:href="@{/css/slick.css}" rel="stylesheet" />
+
+		<link type="text/css" th:href="@{/css/slick-theme.css}" rel="stylesheet" />
+
+
+		<!-- nouislider -->
+		<link type="text/css" th:href="@{/css/nouislider.min.css}" rel="stylesheet" />
+
+		<!-- Font Awesome Icon -->
+		<link type="text/css" th:href="@{/css/font-awesome.min.css}" rel="stylesheet" />
+
+		<!-- Custom stlylesheet -->
+		<link type="text/css" th:href="@{/css/style.css}" rel="stylesheet" />
+		<link type="text/css" th:href="@{/css/admin.css}" rel="stylesheet" />
+
+    </head>
+	<body>
+		<!-- HEADER -->
+		<header>
+			<!-- TOP HEADER -->
+			<div id="top-header">
+				<div class="container">
+					<ul class="header-links pull-left">
+						<li><a href="#"><i class="fa fa-phone"></i> +021-95-51-84</a></li>
+						<li><a href="#"><i class="fa fa-envelope-o"></i> email@email.com</a></li>
+						<li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
+					</ul>
+					<ul class="header-links pull-right">
+						<li><a href="#"><i class="fa fa-dollar"></i> USD</a></li>
+						<li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- /TOP HEADER -->
+
+			<!-- MAIN HEADER -->
+			<div id="header">
+				<!-- container -->
+				<div class="container">
+					<!-- row -->
+					<div class="row">
+						<!-- LOGO -->
+						<div class="col-md-3">
+							<div class="header-logo">
+								<a href="#" class="logo">
+									<img src="img/logo.png" alt="">
+								</a>
+							</div>
+						</div>
+
+
+						<!-- /LOGO -->
+
+
+
+					</div>
+					<!-- row -->
+				</div>
+				<!-- container -->
+			</div>
+			<!-- /MAIN HEADER -->
+		</header>
+		<!-- /HEADER -->
+
+		<!-- NAVIGATION -->
+		<nav id="navigation">
+			<!-- container -->
+			<div class="container">
+				<!-- responsive-nav -->
+				<div id="responsive-nav">
+					<!-- NAV -->
+					<ul class="main-nav nav navbar-nav">
+						<li class="active"><a href="/admin/categories">Categories</a></li>
+						<li><a href="/admin/products">Products</a></li>
+					</ul>
+					<!-- /NAV -->
+				</div>
+				<!-- /responsive-nav -->
+			</div>
+			<!-- /container -->
+		</nav>
+		<!-- /NAVIGATION -->
+
+		<!-- BREADCRUMB -->
+		<div id="breadcrumb" class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-12">
+						<h3 class="breadcrumb-header">Admin Categories</h3>
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /BREADCRUMB -->
+
+		<div class="section">
+			<ul>
+				<li th:each="category : ${categories}" th:if="${category.parent_id == null}">
+					<a th:href="@{'/admin/categories/edit/' + ${category.id}}" th:text="${category.name}"></a>
+
+					<!-- Check if the category has subcategories -->
+					<ul th:if="${#lists.size(category.subcategories) > 0}" class="dropdown">
+						<li th:each="subcategory : ${category.subcategories}">
+							<a th:href="@{'/admin/categories/edit/' + ${category.id}}" th:text="${subcategory.name}"></a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+
+		<!-- SECTION -->
+		<!--<div class="section">
+			&lt;!&ndash; container &ndash;&gt;
+			<div class="container">
+				<tr th:each="category : ${categories}">
+					<div class="row">
+
+						&lt;!&ndash; category &ndash;&gt;
+						<div class="col-md-4 col-xs-6">
+							<div class="product">
+								<div class="product-img">
+									&lt;!&ndash; Show this if parentCategoryName is null &ndash;&gt;
+									<a th:href="@{'/admin/categories/edit/' + ${category.id}}">
+										<img th:src="${category.image}" alt="cat">
+									</a>
+								</div>
+								<div class="product-body">
+									<h3 class="product-name" th:text="${category.name}"><a href="#"></a></h3>
+								</div>
+							</div>
+						</div>
+						&lt;!&ndash; /category &ndash;&gt;
+					</div>
+				</tr>
+				&lt;!&ndash; row &ndash;&gt;
+
+				&lt;!&ndash; /row &ndash;&gt;
+			</div>
+			&lt;!&ndash; /container &ndash;&gt;
+		</div>-->
+		<!-- /SECTION -->
+
+		<!-- jQuery Plugins -->
+		<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+
+		<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+
+		<script type="text/javascript" th:src="@{/js/slick.min.js}"></script>
+
+		<script type="text/javascript" th:src="@{/js/nouislider.min.js}"></script>
+
+		<script type="text/javascript" th:src="@{/js/jquery.zoom.min.js}"></script>
+
+		<script type="text/javascript" th:src="@{/js/main.js}"></script>
+
+	</body>
+</html>
